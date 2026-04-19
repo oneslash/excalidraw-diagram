@@ -1,0 +1,15 @@
+{
+  "document": {
+    "layout": "flow-right",
+    "background": "#fffdf6"
+  },
+  "nodes": [
+    { "id": "browser", "kind": "rectangle", "label": "Browser" },
+    { "id": "api", "kind": "rectangle", "label": "API" },
+    { "id": "db", "kind": "rectangle", "label": "Postgres" }
+  ],
+  "edges": [
+    { "id": "browser-api", "from": "browser", "to": "api", "label": "HTTPS" },
+    { "id": "api-db", "from": "api", "to": "db", "label": "SQL" }
+  ]
+}

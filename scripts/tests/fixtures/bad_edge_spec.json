@@ -1,0 +1,10 @@
+{
+  "document": { "layout": "flow-right" },
+  "nodes": [
+    { "id": "a", "kind": "rectangle", "label": "A" },
+    { "id": "b", "kind": "rectangle", "label": "B" }
+  ],
+  "edges": [
+    { "id": "typo", "from": "a", "to": "nonexistent", "label": "broken" }
+  ]
+}

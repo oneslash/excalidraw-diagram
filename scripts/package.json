@@ -1,0 +1,30 @@
+{
+  "name": "excalidraw-diagram-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build_runtime": "esbuild runtime/browser_runner.ts --bundle --platform=browser --format=iife --global-name=ExcalidrawBrowserRunnerBundle --outfile=runtime/browser_runner.bundle.js",
+    "typecheck": "tsc --noEmit",
+    "create_scene": "tsx create_scene.ts",
+    "edit_scene": "tsx edit_scene.ts",
+    "repair_scene": "tsx repair_scene.ts",
+    "convert_mermaid": "tsx convert_mermaid.ts",
+    "export_svg": "tsx export_svg.ts",
+    "verify_scene": "tsx verify_scene.ts",
+    "inspect_scene": "tsx inspect_scene.ts"
+  },
+  "dependencies": {
+    "@excalidraw/excalidraw": "0.18.0",
+    "@excalidraw/mermaid-to-excalidraw": "2.2.2",
+    "elkjs": "^0.11.1",
+    "playwright": "1.59.1",
+    "react": "19.2.5",
+    "react-dom": "19.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "25.6.0",
+    "esbuild": "0.27.0",
+    "tsx": "4.21.0",
+    "typescript": "6.0.3"
+  }
+}

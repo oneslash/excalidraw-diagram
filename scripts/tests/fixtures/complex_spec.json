@@ -1,0 +1,38 @@
+{
+  "document": {
+    "layout": "manual",
+    "background": "#f8f6ef",
+    "gapX": 120,
+    "gapY": 110,
+    "nodeWidth": 180,
+    "nodeHeight": 90,
+    "wrapAt": 4
+  },
+  "nodes": [
+    { "id": "browser", "kind": "rectangle", "label": "Browser", "x": 80, "y": 110 },
+    { "id": "edge", "kind": "diamond", "label": "Edge Cache", "x": 380, "y": 95, "width": 200, "height": 120 },
+    { "id": "auth", "kind": "rectangle", "label": "Auth", "x": 380, "y": 330 },
+    { "id": "api", "kind": "rectangle", "label": "API", "x": 720, "y": 110 },
+    { "id": "queue", "kind": "rectangle", "label": "Queue", "x": 720, "y": 330 },
+    { "id": "worker", "kind": "rectangle", "label": "Worker", "x": 1040, "y": 330 },
+    { "id": "db", "kind": "rectangle", "label": "Primary DB", "x": 1360, "y": 110 },
+    { "id": "cache", "kind": "ellipse", "label": "Redis", "x": 1040, "y": 95, "width": 190, "height": 120 },
+    { "id": "alerts", "kind": "rectangle", "label": "Alerts", "x": 1360, "y": 330 },
+    { "id": "ops-note", "kind": "text", "label": "Retries must be visible in the final graph", "x": 980, "y": 560 }
+  ],
+  "edges": [
+    { "id": "browser-edge", "from": "browser", "to": "edge", "label": "GET" },
+    { "id": "edge-api", "from": "edge", "to": "api", "label": "cache miss" },
+    { "id": "browser-auth", "from": "browser", "to": "auth", "label": "login" },
+    { "id": "auth-api", "from": "auth", "to": "api", "label": "JWT" },
+    { "id": "api-queue", "from": "api", "to": "queue", "label": "enqueue" },
+    { "id": "queue-worker", "from": "queue", "to": "worker", "label": "consume" },
+    { "id": "worker-db", "from": "worker", "to": "db", "label": "write" },
+    { "id": "api-cache", "from": "api", "to": "cache", "label": "warm" },
+    { "id": "worker-alerts", "from": "worker", "to": "alerts", "label": "on error" }
+  ],
+  "frames": [
+    { "id": "frontend-frame", "name": "Frontend", "children": ["browser", "edge", "auth"] },
+    { "id": "backend-frame", "name": "Backend", "children": ["api", "queue", "worker", "db", "cache"] }
+  ]
+}

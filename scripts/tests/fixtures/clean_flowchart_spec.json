@@ -1,0 +1,50 @@
+{
+  "document": {
+    "layout": "flow-right",
+    "preset": "clean-flowchart",
+    "background": "#f7fafc",
+    "gapX": 96,
+    "gapY": 72,
+    "laneGap": 88,
+    "laneHeaderHeight": 44,
+    "nodeWidth": 180,
+    "nodeHeight": 84,
+    "wrapAt": 4
+  },
+  "swimlanes": [
+    { "id": "intake-lane", "label": "Intake" },
+    { "id": "processing-lane", "label": "Processing" },
+    { "id": "recovery-lane", "label": "Recovery" }
+  ],
+  "nodes": [
+    { "id": "request", "role": "terminator", "label": "Request received", "lane": "intake-lane", "row": 0, "column": 0 },
+    { "id": "validate", "role": "process", "label": "Validate payload", "lane": "intake-lane", "row": 0, "column": 1 },
+    { "id": "decision", "role": "branch-split", "label": "Retryable failure?", "lane": "processing-lane", "row": 0, "column": 0 },
+    { "id": "worker", "role": "process", "label": "Run worker", "lane": "processing-lane", "row": 1, "column": 0 },
+    { "id": "cache", "role": "process", "label": "Warm cache", "lane": "processing-lane", "row": 1, "column": 1 },
+    { "id": "complete", "role": "merge-point", "label": "Done", "lane": "processing-lane", "row": 2, "column": 1 },
+    { "id": "retry", "role": "process", "label": "Queue retry", "lane": "recovery-lane", "row": 0, "column": 0 },
+    { "id": "notify", "role": "process", "label": "Page on-call", "lane": "recovery-lane", "row": 0, "column": 1 }
+  ],
+  "outcomeRows": [
+    { "id": "decision-outcomes", "parent": "decision", "children": ["worker", "cache"] }
+  ],
+  "edges": [
+    { "id": "request-validate", "from": "request", "to": "validate", "label": "ingress" },
+    { "id": "validate-decision", "from": "validate", "to": "decision", "label": "handoff" },
+    { "id": "decision-worker", "from": "decision", "to": "worker", "label": "yes" },
+    { "id": "decision-retry", "from": "decision", "to": "retry", "label": "no" },
+    { "id": "worker-cache", "from": "worker", "to": "cache", "label": "refresh" },
+    { "id": "cache-complete", "from": "cache", "to": "complete", "label": "served" },
+    { "id": "retry-notify", "from": "retry", "to": "notify", "label": "after 3 tries" },
+    { "id": "notify-complete", "from": "notify", "to": "complete", "label": "resolved" }
+  ],
+  "callouts": [
+    {
+      "id": "sla-callout",
+      "target": "notify",
+      "label": "Escalate within 5 minutes if the retry queue keeps growing.",
+      "placement": "bottom"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "operations": [
+    { "op": "rename", "id": "db", "label": "Aurora" },
+    { "op": "add-node", "node": { "id": "queue", "kind": "rectangle", "label": "Queue", "x": 520, "y": 220 } },
+    { "op": "connect", "id": "api-queue", "from": "api", "to": "queue", "label": "enqueue" },
+    { "op": "frame", "id": "backend-frame", "name": "Backend", "children": ["api", "db", "queue"] }
+  ]
+}

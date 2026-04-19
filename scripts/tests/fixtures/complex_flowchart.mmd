@@ -1,0 +1,15 @@
+flowchart TD
+  Browser[Browser] --> CDN{Cache Hit?}
+  CDN -- Yes --> Cached[Return cached data]
+  CDN -- No --> API[API Gateway]
+  API --> Auth[Auth Service]
+  API --> Queue[(Job Queue)]
+  Queue --> Worker[Worker]
+  Worker --> DB[(Aurora)]
+  Worker --> Retry{Retry needed?}
+  Retry -- Yes --> DLQ[Retry / DLQ]
+  Retry -- No --> Done[Complete]
+  DLQ --> Alerts[Page Ops]
+  subgraph Ops
+    Alerts --> Dashboard[On-call Dashboard]
+  end

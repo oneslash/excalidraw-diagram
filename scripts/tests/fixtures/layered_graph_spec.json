@@ -1,0 +1,34 @@
+{
+  "document": {
+    "layout": "flow-right",
+    "preset": "clean-flowchart",
+    "background": "#f7fafc",
+    "gapX": 140,
+    "gapY": 88,
+    "nodeWidth": 186,
+    "nodeHeight": 84,
+    "wrapAt": 8
+  },
+  "nodes": [
+    { "id": "request", "role": "terminator", "label": "Inbound request" },
+    { "id": "auth", "role": "process", "label": "Authenticate client" },
+    { "id": "decision", "role": "branch-split", "label": "Cached hit?" },
+    { "id": "cache", "role": "process", "label": "Serve from cache" },
+    { "id": "worker", "role": "process", "label": "Run worker" },
+    { "id": "db", "role": "data", "label": "Write primary DB" },
+    { "id": "notify", "role": "process", "label": "Notify subscribers" },
+    { "id": "alerts", "role": "process", "label": "Open incident" },
+    { "id": "done", "role": "merge-point", "label": "Done" }
+  ],
+  "edges": [
+    { "id": "request-auth", "from": "request", "to": "auth", "label": "ingress" },
+    { "id": "auth-decision", "from": "auth", "to": "decision", "label": "evaluate" },
+    { "id": "decision-cache", "from": "decision", "to": "cache", "label": "yes" },
+    { "id": "cache-done", "from": "cache", "to": "done", "label": "cache hit" },
+    { "id": "decision-worker", "from": "decision", "to": "worker", "label": "no" },
+    { "id": "worker-db", "from": "worker", "to": "db", "label": "write" },
+    { "id": "db-notify", "from": "db", "to": "notify", "label": "fanout" },
+    { "id": "notify-done", "from": "notify", "to": "done", "label": "served" },
+    { "id": "worker-alerts", "from": "worker", "to": "alerts", "label": "error" }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "operations": [
+    { "op": "rename", "id": "db", "label": "Aurora Cluster" },
+    { "op": "move", "id": "cache", "x": 1040, "y": 60 },
+    { "op": "set-style", "id": "api", "style": { "backgroundColor": "#fff4d6", "strokeWidth": 2 } },
+    { "op": "add-node", "node": { "id": "retry-dlq", "kind": "rectangle", "label": "Retry / DLQ", "x": 1040, "y": 560 } },
+    { "op": "connect", "id": "worker-retry", "from": "worker", "to": "retry-dlq", "label": "retry" },
+    { "op": "connect", "id": "retry-alerts", "from": "retry-dlq", "to": "alerts", "label": "page ops" },
+    { "op": "frame", "id": "ops-frame", "name": "Operations", "children": ["alerts", "retry-dlq"] },
+    { "op": "delete", "id": "ops-note" }
+  ]
+}

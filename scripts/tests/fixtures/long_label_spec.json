@@ -1,0 +1,48 @@
+{
+  "document": {
+    "layout": "manual"
+  },
+  "nodes": [
+    {
+      "id": "a",
+      "kind": "rectangle",
+      "label": "This is an intentionally very long label that will likely overflow the small node bounding box",
+      "x": 100,
+      "y": 100,
+      "width": 120,
+      "height": 80
+    },
+    {
+      "id": "b",
+      "kind": "rectangle",
+      "label": "Short",
+      "x": 520,
+      "y": 100,
+      "width": 120,
+      "height": 80
+    },
+    {
+      "id": "c",
+      "kind": "ellipse",
+      "label": "Another long descriptive label for testing",
+      "x": 100,
+      "y": 320,
+      "width": 120,
+      "height": 80
+    },
+    {
+      "id": "d",
+      "kind": "diamond",
+      "label": "D",
+      "x": 520,
+      "y": 320,
+      "width": 120,
+      "height": 80
+    }
+  ],
+  "edges": [
+    { "id": "ab", "from": "a", "to": "b" },
+    { "id": "cd", "from": "c", "to": "d" },
+    { "id": "ac", "from": "a", "to": "c" }
+  ]
+}

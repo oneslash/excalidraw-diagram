@@ -1,0 +1,8 @@
+{
+  "document": { "layout": "manual" },
+  "nodes": [
+    { "id": "a", "kind": "rectangle", "label": "A", "x": 100, "y": 100, "width": 200, "height": 100 },
+    { "id": "b", "kind": "rectangle", "label": "B", "x": 180, "y": 140, "width": 200, "height": 100 }
+  ],
+  "edges": []
+}

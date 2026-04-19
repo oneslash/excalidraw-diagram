@@ -1,0 +1,48 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "local",
+  "elements": [
+    {
+      "id": "missing-image",
+      "type": "image",
+      "x": 64,
+      "y": 64,
+      "width": 160,
+      "height": 90,
+      "angle": 0,
+      "strokeColor": "transparent",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "roundness": null,
+      "seed": 1,
+      "version": 1,
+      "versionNonce": 1,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "status": "saved",
+      "fileId": "missing-file-id",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null
+    }
+  ],
+  "appState": {
+    "viewBackgroundColor": "#ffffff",
+    "exportBackground": true,
+    "exportWithDarkMode": false,
+    "theme": "light"
+  },
+  "files": {}
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Excalidraw Diagram"
+  short_description: "Create, edit, and verify Excalidraw diagrams"
+  default_prompt: "Use $excalidraw-diagram to create, edit, repair, verify, convert, or export an Excalidraw diagram."
